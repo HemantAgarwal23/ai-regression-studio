@@ -3,13 +3,13 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Issues](https://img.shields.io/github/issues/yourusername/ai-regression-studio.svg)](https://github.com/yourusername/ai-regression-studio/issues)
+
 
 > **Next-Generation Machine Learning Platform for Regression Analysis**
 > 
 > A sophisticated, interactive web application that democratizes machine learning by providing an intuitive interface for regression modeling, automated feature engineering, and intelligent predictions.
 
-![AI Regression Studio Demo](https://via.placeholder.com/800x400/667eea/ffffff?text=AI+Regression+Studio+Demo)
+![AI Regression Studio Demo](https://github.com/HemantAgarwal23/ai-regression-studio/blob/main/Screenshot%202025-08-28%20165315.png))
 
 ## 🌟 Key Features
 
@@ -274,3 +274,4 @@ Made with ❤️ by HEMANT AGARWAL(https://github.com/HemantAgarwal23)
 
 
 </div>
+
