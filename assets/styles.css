@@ -1,0 +1,752 @@
+/* AI Regression Studio - application theme
+ *
+ * Single light theme. Loaded at runtime by app.py via load_css().
+ * Kept out of app.py so the Python file stays readable.
+ */
+
+    /* Main application styling */
+    .stApp {
+        background: #ffffff;
+        color: #2d3748;
+    }
+    
+    /* Header styling */
+    .main-header {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1a202c;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid #4c6ef5;
+    }
+    
+    .section-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #2d3748;
+        border-bottom: 2px solid #4c6ef5;
+        padding-bottom: 0.5rem;
+        margin: 1.5rem 0 1rem 0;
+    }
+    
+    /* Card styling */
+    .metric-card {
+        background: #ffffff;
+        padding: 1.5rem;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+    
+    .info-box {
+        background: #e6f2ff;
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid #4c6ef5;
+        margin: 1rem 0;
+        color: #1a202c;
+    }
+    
+    .success-box {
+        background: #d4edda;
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid #28a745;
+        margin: 1rem 0;
+        color: #155724;
+    }
+    
+    .warning-box {
+        background: #fff3cd;
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid #ffc107;
+        margin: 1rem 0;
+        color: #856404;
+    }
+    
+    /* Tab styling */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 2px;
+        background: #f7fafc;
+        padding: 0.5rem;
+        border-radius: 10px;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        height: 45px;
+        padding-left: 20px;
+        padding-right: 20px;
+        background: #ffffff;
+        border-radius: 8px;
+        color: #4a5568;
+        font-weight: 500;
+        border: 1px solid #e2e8f0;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background: #4c6ef5;
+        color: white;
+        box-shadow: 0 2px 8px rgba(76, 110, 245, 0.3);
+    }
+    
+    /* ============================================
+       COMPREHENSIVE TEXT VISIBILITY FIXES
+       ============================================ */
+    
+    /* Sidebar background */
+    .stSidebar {
+        background: #ffffff !important;
+    }
+    
+    /* All sidebar text elements */
+    .stSidebar .stMarkdown,
+    .stSidebar h1, .stSidebar h2, .stSidebar h3, .stSidebar h4, .stSidebar h5, .stSidebar h6,
+    .stSidebar p, .stSidebar span, .stSidebar div,
+    .stSidebar label, .stSidebar strong, .stSidebar em {
+        color: #2d3748 !important;
+    }
+    
+    /* Selectbox - all states */
+    .stSelectbox label,
+    .stSelectbox [data-baseweb="select"] > div,
+    .stSelectbox [data-baseweb="select"] > div > div,
+    .stSelectbox [data-baseweb="select"] > div > div > div,
+    .stSelectbox [data-baseweb="select"] span,
+    .stSelectbox [data-baseweb="select"] div[role="listbox"] > div,
+    .stSelectbox [data-baseweb="select"] div[role="listbox"] > div > div,
+    .stSelectbox [data-baseweb="select"] div[role="listbox"] > div > div > div {
+        color: #2d3748 !important;
+        background: #ffffff !important;
+    }
+    
+    /* Selectbox dropdown options (when open) */
+    [data-baseweb="popover"] [data-baseweb="select"] > div,
+    [data-baseweb="popover"] [data-baseweb="select"] > div > div,
+    [data-baseweb="popover"] [data-baseweb="select"] div[role="listbox"] > div,
+    [data-baseweb="popover"] [data-baseweb="select"] div[role="listbox"] > div > div,
+    [data-baseweb="popover"] [data-baseweb="select"] div[role="listbox"] > div > div > div,
+    [data-baseweb="popover"] [data-baseweb="select"] div[role="listbox"] > div > div > div > div {
+        color: #2d3748 !important;
+        background: #ffffff !important;
+    }
+    
+    /* Multiselect - all states including placeholder */
+    .stMultiselect label,
+    .stMultiselect > label,
+    .stMultiselect [data-baseweb="select"],
+    .stMultiselect [data-baseweb="select"] > div,
+    .stMultiselect [data-baseweb="select"] > div > div,
+    .stMultiselect [data-baseweb="select"] > div > div > div,
+    .stMultiselect [data-baseweb="select"] span,
+    .stMultiselect [data-baseweb="select"] div[role="listbox"] > div,
+    .stMultiselect [data-baseweb="select"] div[role="listbox"] > div > div,
+    .stMultiselect [data-baseweb="select"] input,
+    .stMultiselect [data-baseweb="select"] input::placeholder,
+    .stMultiselect [data-baseweb="select"] [placeholder],
+    .stMultiselect [data-baseweb="select"] div[data-baseweb="select"] {
+        color: #2d3748 !important;
+        background: #ffffff !important;
+    }
+    
+    /* Multiselect placeholder text specifically */
+    .stMultiselect [data-baseweb="select"] div[data-placeholder],
+    .stMultiselect [data-baseweb="select"] div:empty::before,
+    .stMultiselect [data-baseweb="select"] span[data-placeholder],
+    .stMultiselect [data-baseweb="select"] > div > div > div[style*="color"] {
+        color: #2d3748 !important;
+    }
+    
+    /* All text within multiselect */
+    .stMultiselect * {
+        color: #2d3748 !important;
+    }
+    
+    /* BaseWeb select component - comprehensive */
+    [data-baseweb="select"] {
+        color: #2d3748 !important;
+    }
+    
+    [data-baseweb="select"] > div {
+        color: #2d3748 !important;
+        background: #ffffff !important;
+    }
+    
+    [data-baseweb="select"] > div > div {
+        color: #2d3748 !important;
+        background: #ffffff !important;
+    }
+    
+    [data-baseweb="select"] span {
+        color: #2d3748 !important;
+    }
+    
+    /* Slider labels and values */
+    .stSlider label,
+    .stSlider > div > div > div,
+    .stSlider [data-baseweb="slider"] label,
+    .stSlider [data-baseweb="slider"] > div > div {
+        color: #2d3748 !important;
+    }
+    
+    /* Checkbox labels */
+    .stCheckbox label,
+    .stCheckbox > label > div,
+    .stCheckbox [data-baseweb="checkbox"] label {
+        color: #2d3748 !important;
+    }
+    
+    /* Number input - comprehensive fix for dark background issue */
+    .stNumberInput label,
+    .stNumberInput > label,
+    .stNumberInput > div > label,
+    .stNumberInput > div > div > input,
+    .stNumberInput > div > div > div > input,
+    .stNumberInput [data-baseweb="input"],
+    .stNumberInput [data-baseweb="input"] > div,
+    .stNumberInput [data-baseweb="input"] > div > div,
+    .stNumberInput [data-baseweb="input"] > div > div > input {
+        color: #2d3748 !important;
+        background: #ffffff !important;
+    }
+    
+    /* Number input container - force white background */
+    .stNumberInput > div,
+    .stNumberInput > div > div,
+    .stNumberInput > div > div > div,
+    .stNumberInput [data-baseweb="input-container"],
+    .stNumberInput [data-baseweb="input-container"] > div {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e0 !important;
+    }
+    
+    /* Number input buttons (+ and -) */
+    .stNumberInput button,
+    .stNumberInput [data-baseweb="button"],
+    .stNumberInput [data-baseweb="button"] > div,
+    .stNumberInput [role="button"],
+    .stNumberInput button > span,
+    .stNumberInput button > div {
+        background: #f7fafc !important;
+        color: #2d3748 !important;
+        border: 1px solid #cbd5e0 !important;
+    }
+    
+    /* Number input button hover */
+    .stNumberInput button:hover,
+    .stNumberInput [data-baseweb="button"]:hover {
+        background: #e6f2ff !important;
+        color: #2d3748 !important;
+    }
+    
+    /* All elements within number input */
+    .stNumberInput * {
+        color: #2d3748 !important;
+    }
+    
+    /* Text input */
+    .stTextInput label,
+    .stTextInput > div > div > input,
+    .stTextInput [data-baseweb="input"] {
+        color: #2d3748 !important;
+        background: #ffffff !important;
+    }
+    
+    /* File uploader - comprehensive fixes */
+    .stFileUploader label,
+    .stFileUploader > label,
+    .stFileUploader > div > label,
+    .stFileUploader [data-testid="stFileUploader"] label,
+    .stFileUploader [data-testid="stFileUploader"] > div,
+    .stFileUploader [data-testid="stFileUploader"] > div > div,
+    .stFileUploader [data-testid="stFileUploader"] > div > div > div,
+    .stFileUploader [data-testid="stFileUploader"] > div > div > div > div,
+    .stFileUploader [data-testid="stFileUploader"] span,
+    .stFileUploader [data-testid="stFileUploader"] p,
+    .stFileUploader [data-testid="stFileUploader"] a {
+        color: #2d3748 !important;
+    }
+    
+    /* File uploader drop zone - AGGRESSIVE fix for dark background and light text */
+    .stFileUploader [data-baseweb="file-uploader"],
+    .stFileUploader [data-baseweb="file-uploader"] > div,
+    .stFileUploader [data-baseweb="file-uploader"] > div > div,
+    .stFileUploader [data-baseweb="file-uploader"] > div > div > div,
+    .stFileUploader [data-baseweb="file-uploader"] > div > div > div > div {
+        background: #f7fafc !important;
+        border: 2px dashed #cbd5e0 !important;
+        color: #2d3748 !important;
+    }
+    
+    /* File uploader ALL text elements - force dark color */
+    .stFileUploader [data-baseweb="file-uploader"] label,
+    .stFileUploader [data-baseweb="file-uploader"] span,
+    .stFileUploader [data-baseweb="file-uploader"] p,
+    .stFileUploader [data-baseweb="file-uploader"] div,
+    .stFileUploader [data-baseweb="file-uploader"] a,
+    .stFileUploader [data-baseweb="file-uploader"] * {
+        color: #2d3748 !important;
+        background: transparent !important;
+    }
+    
+    /* File uploader button text - force visibility */
+    .stFileUploader [data-baseweb="file-uploader"] button,
+    .stFileUploader [data-baseweb="file-uploader"] button > span,
+    .stFileUploader [data-baseweb="file-uploader"] button > div,
+    .stFileUploader [data-baseweb="file-uploader"] button *,
+    .stFileUploader [data-baseweb="file-uploader"] [data-baseweb="button"],
+    .stFileUploader [data-baseweb="file-uploader"] [data-baseweb="button"] > div,
+    .stFileUploader [data-baseweb="file-uploader"] [data-baseweb="button"] > span {
+        color: #2d3748 !important;
+        background: #ffffff !important;
+        border: 1px solid #cbd5e0 !important;
+    }
+    
+    /* File uploader button hover */
+    .stFileUploader [data-baseweb="file-uploader"] button:hover,
+    .stFileUploader [data-baseweb="file-uploader"] [data-baseweb="button"]:hover {
+        background: #e6f2ff !important;
+        color: #2d3748 !important;
+    }
+    
+    /* File uploader icon and text - make visible with blue color */
+    .stFileUploader [data-baseweb="file-uploader"] svg,
+    .stFileUploader [data-baseweb="file-uploader"] path,
+    .stFileUploader [data-baseweb="file-uploader"] g {
+        fill: #4c6ef5 !important;
+        stroke: #4c6ef5 !important;
+        color: #4c6ef5 !important;
+    }
+    
+    /* Target the specific "Drag and drop file here" text */
+    .stFileUploader [data-baseweb="file-uploader"] div[style*="color"],
+    .stFileUploader [data-baseweb="file-uploader"] span[style*="color"],
+    .stFileUploader [data-baseweb="file-uploader"] p[style*="color"] {
+        color: #2d3748 !important;
+    }
+    
+    /* Force all text in file uploader to be dark */
+    .stFileUploader [data-baseweb="file-uploader"] *:not(svg):not(path):not(g) {
+        color: #2d3748 !important;
+    }
+    
+    /* File uploader file list items */
+    .stFileUploader [data-testid="stFileUploader"] ul,
+    .stFileUploader [data-testid="stFileUploader"] ul li,
+    .stFileUploader [data-testid="stFileUploader"] ul li > div,
+    .stFileUploader [data-testid="stFileUploader"] ul li > div > div,
+    .stFileUploader [data-testid="stFileUploader"] ul li > div > div > div,
+    .stFileUploader [data-testid="stFileUploader"] ul li span,
+    .stFileUploader [data-testid="stFileUploader"] ul li p,
+    .stFileUploader [data-testid="stFileUploader"] ul li a {
+        color: #2d3748 !important;
+    }
+    
+    /* File name text specifically */
+    .stFileUploader [data-testid="stFileUploader"] [data-testid="stMarkdownContainer"] p,
+    .stFileUploader [data-testid="stFileUploader"] [data-testid="stMarkdownContainer"] span,
+    .stFileUploader [data-testid="stFileUploader"] [data-testid="stMarkdownContainer"] div,
+    .stFileUploader [data-testid="stFileUploader"] [data-testid="stMarkdownContainer"] a {
+        color: #2d3748 !important;
+    }
+    
+    /* All text within file uploader area */
+    .stFileUploader * {
+        color: #2d3748 !important;
+    }
+    
+    /* File uploader drop zone text */
+    .stFileUploader [data-baseweb="file-uploader"] label,
+    .stFileUploader [data-baseweb="file-uploader"] > div,
+    .stFileUploader [data-baseweb="file-uploader"] > div > div,
+    .stFileUploader [data-baseweb="file-uploader"] span,
+    .stFileUploader [data-baseweb="file-uploader"] p {
+        color: #2d3748 !important;
+    }
+    
+    /* Button text */
+    .stButton > button {
+        color: #ffffff !important;
+    }
+    
+    /* Main content area text */
+    .main .stMarkdown,
+    .main h1, .main h2, .main h3, .main h4, .main h5, .main h6,
+    .main p, .main span, .main div,
+    .main label {
+        color: #2d3748 !important;
+    }
+    
+    /* Dataframe text */
+    .stDataFrame,
+    .stDataFrame table,
+    .stDataFrame th,
+    .stDataFrame td {
+        color: #2d3748 !important;
+    }
+    
+    /* Metric text */
+    [data-testid="stMetricLabel"],
+    [data-testid="stMetricValue"],
+    [data-testid="stMetricDelta"] {
+        color: #2d3748 !important;
+    }
+    
+    /* Expander text */
+    .streamlit-expanderHeader,
+    .streamlit-expanderContent {
+        color: #2d3748 !important;
+    }
+    
+    /* Dropdown menu items (when selectbox is open) */
+    ul[role="listbox"] li,
+    ul[role="listbox"] li > div,
+    ul[role="listbox"] li > div > div,
+    ul[role="listbox"] li span,
+    div[role="listbox"] li,
+    div[role="listbox"] li > div,
+    div[role="listbox"] li > div > div,
+    div[role="listbox"] li span {
+        color: #2d3748 !important;
+        background: #ffffff !important;
+    }
+    
+    /* Hover state for dropdown items */
+    ul[role="listbox"] li:hover,
+    ul[role="listbox"] li:hover > div,
+    div[role="listbox"] li:hover,
+    div[role="listbox"] li:hover > div {
+        color: #2d3748 !important;
+        background: #f7fafc !important;
+    }
+    
+    /* Selected dropdown item */
+    ul[role="listbox"] li[aria-selected="true"],
+    div[role="listbox"] li[aria-selected="true"] {
+        color: #2d3748 !important;
+        background: #e6f2ff !important;
+    }
+    
+    /* Popover (dropdown container) - force light theme */
+    [data-baseweb="popover"],
+    [data-baseweb="popover"] > div,
+    [data-baseweb="popover"] > div > div,
+    [data-baseweb="popover"] > div > div > div {
+        background: #ffffff !important;
+        color: #2d3748 !important;
+        border: 1px solid #e2e8f0 !important;
+    }
+    
+    /* Dropdown menu list container */
+    [data-baseweb="popover"] ul,
+    [data-baseweb="popover"] ul[role="listbox"],
+    [data-baseweb="popover"] div[role="listbox"],
+    [data-baseweb="popover"] [data-baseweb="menu"],
+    [data-baseweb="popover"] [data-baseweb="menu"] > ul {
+        background: #ffffff !important;
+        color: #2d3748 !important;
+    }
+    
+    /* Dropdown menu items - force light background with dark text */
+    [data-baseweb="popover"] ul li,
+    [data-baseweb="popover"] ul[role="listbox"] li,
+    [data-baseweb="popover"] div[role="listbox"] li,
+    [data-baseweb="popover"] [data-baseweb="menu"] li,
+    [data-baseweb="popover"] li > div,
+    [data-baseweb="popover"] li > div > div,
+    [data-baseweb="popover"] li span,
+    [data-baseweb="popover"] li p,
+    [data-baseweb="popover"] li a {
+        background: #ffffff !important;
+        color: #2d3748 !important;
+    }
+    
+    /* Hover state for dropdown items - light gray background */
+    [data-baseweb="popover"] ul li:hover,
+    [data-baseweb="popover"] ul[role="listbox"] li:hover,
+    [data-baseweb="popover"] div[role="listbox"] li:hover,
+    [data-baseweb="popover"] li:hover > div,
+    [data-baseweb="popover"] li:hover > div > div {
+        background: #f7fafc !important;
+        color: #2d3748 !important;
+    }
+    
+    /* Selected/highlighted dropdown item */
+    [data-baseweb="popover"] ul li[aria-selected="true"],
+    [data-baseweb="popover"] ul[role="listbox"] li[aria-selected="true"],
+    [data-baseweb="popover"] div[role="listbox"] li[aria-selected="true"],
+    [data-baseweb="popover"] li[aria-selected="true"] > div,
+    [data-baseweb="popover"] li[aria-selected="true"] > div > div {
+        background: #e6f2ff !important;
+        color: #2d3748 !important;
+    }
+    
+    /* All text within popover */
+    [data-baseweb="popover"] * {
+        color: #2d3748 !important;
+    }
+    
+    /* Any remaining BaseWeb components */
+    [data-baseweb] {
+        color: #2d3748 !important;
+    }
+    
+    [data-baseweb] > div {
+        color: #2d3748 !important;
+    }
+    
+    [data-baseweb] span {
+        color: #2d3748 !important;
+    }
+    
+    /* Force text color on all Streamlit widgets */
+    .stSelectbox, .stMultiselect, .stSlider, .stCheckbox,
+    .stNumberInput, .stTextInput, .stFileUploader {
+        color: #2d3748 !important;
+    }
+    
+    /* Ensure all text in widgets is visible */
+    .stSelectbox *, .stMultiselect *, .stSlider *,
+    .stCheckbox *, .stNumberInput *, .stTextInput * {
+        color: #2d3748 !important;
+    }
+    
+    /* File uploader - specific fixes for uploaded file names */
+    div[data-testid="stFileUploader"] *,
+    div[data-testid="stFileUploader"] p,
+    div[data-testid="stFileUploader"] span,
+    div[data-testid="stFileUploader"] div,
+    div[data-testid="stFileUploader"] a,
+    div[data-testid="stFileUploader"] li,
+    div[data-testid="stFileUploader"] ul li,
+    div[data-testid="stFileUploader"] ul li *,
+    div[data-testid="stFileUploader"] ul li p,
+    div[data-testid="stFileUploader"] ul li span,
+    div[data-testid="stFileUploader"] ul li div,
+    div[data-testid="stFileUploader"] ul li a {
+        color: #2d3748 !important;
+    }
+    
+    /* Markdown container within file uploader (file names) */
+    [data-testid="stMarkdownContainer"] p,
+    [data-testid="stMarkdownContainer"] span,
+    [data-testid="stMarkdownContainer"] div,
+    [data-testid="stMarkdownContainer"] a,
+    div[data-testid="stFileUploader"] [data-testid="stMarkdownContainer"] * {
+        color: #2d3748 !important;
+    }
+    
+    /* Placeholder text - comprehensive fix */
+    ::placeholder,
+    input::placeholder,
+    textarea::placeholder,
+    [placeholder],
+    [data-placeholder],
+    div[placeholder],
+    span[placeholder] {
+        color: #2d3748 !important;
+        opacity: 0.7 !important;
+    }
+    
+    /* All labels - ensure visibility */
+    label,
+    .stMarkdown label,
+    .stMarkdown > label,
+    div[data-testid="stMarkdownContainer"] label,
+    [data-testid="stMarkdownContainer"] label {
+        color: #2d3748 !important;
+    }
+    
+    /* All text elements - catch-all */
+    p, span, div, a, label, li, td, th, h1, h2, h3, h4, h5, h6 {
+        color: #2d3748 !important;
+    }
+    
+    /* Force dark text on specific problematic elements */
+    .stFileUploader p,
+    .stFileUploader span,
+    .stFileUploader div,
+    .stFileUploader a,
+    .stFileUploader li,
+    .stMultiselect p,
+    .stMultiselect span,
+    .stMultiselect div,
+    .stMultiselect label {
+        color: #2d3748 !important;
+    }
+    
+    /* Main content area - ensure all text is visible */
+    .main .element-container label,
+    .main .element-container p,
+    .main .element-container span,
+    .main .element-container div {
+        color: #2d3748 !important;
+    }
+    
+    /* Override Streamlit's default light text colors */
+    .stMarkdown,
+    .stMarkdown p,
+    .stMarkdown span,
+    .stMarkdown div,
+    [data-testid="stMarkdownContainer"],
+    [data-testid="stMarkdownContainer"] p,
+    [data-testid="stMarkdownContainer"] span,
+    [data-testid="stMarkdownContainer"] div {
+        color: #2d3748 !important;
+    }
+    
+    /* Aggressive fix for multiselect placeholder - target all possible selectors */
+    [data-baseweb="select"] div[style*="rgb"],
+    [data-baseweb="select"] div[style*="rgba"],
+    [data-baseweb="select"] > div > div > div[style],
+    [data-baseweb="select"] > div > div > div > div,
+    [data-baseweb="select"] > div > div > div > div > div,
+    .stMultiselect [data-baseweb="select"] > div > div > div[style*="color"],
+    .stMultiselect [data-baseweb="select"] > div > div > div > div[style*="color"] {
+        color: #2d3748 !important;
+    }
+    
+    /* Target BaseWeb SelectValue component (the visible text in selectbox/multiselect) */
+    [data-baseweb="select"] [data-baseweb="select-value"],
+    [data-baseweb="select"] [data-baseweb="select-value"] > div,
+    [data-baseweb="select"] [data-baseweb="select-value"] > div > div,
+    [data-baseweb="select"] [data-baseweb="select-value"] span,
+    [data-baseweb="select"] [data-baseweb="select-value"] div {
+        color: #2d3748 !important;
+    }
+    
+    /* Force all text in element containers to be visible */
+    .element-container label,
+    .element-container > label,
+    .element-container p,
+    .element-container span,
+    .element-container div:not([class*="st"]):not([data-baseweb]) {
+        color: #2d3748 !important;
+    }
+    
+    /* Specific fix for labels above widgets */
+    div[data-testid="column"] label,
+    div[data-testid="column"] > label,
+    div[data-testid="column"] p,
+    div[data-testid="column"] span {
+        color: #2d3748 !important;
+    }
+    
+    /* Override inline styles - most aggressive fix */
+    [style*="color"]:not([style*="background"]):not([style*="border"]) {
+        color: #2d3748 !important;
+    }
+    
+    /* Force override on elements with inline color styles */
+    div[style*="color: rgb"],
+    div[style*="color:rgba"],
+    span[style*="color: rgb"],
+    span[style*="color:rgba"],
+    p[style*="color: rgb"],
+    p[style*="color:rgba"],
+    label[style*="color: rgb"],
+    label[style*="color:rgba"] {
+        color: #2d3748 !important;
+    }
+    
+    /* Nuclear option - force all text to be dark (use sparingly) */
+    body, html, #root, #root > div {
+        color: #2d3748 !important;
+    }
+    
+    /* But allow specific overrides for buttons and selected items */
+    .stButton > button,
+    .stTabs [aria-selected="true"],
+    button[data-baseweb="button"] {
+        color: inherit !important;
+    }
+    
+    /* Additional aggressive fix for file uploader - override any inline styles */
+    .stFileUploader [style*="color"],
+    .stFileUploader div[style*="color"],
+    .stFileUploader span[style*="color"],
+    .stFileUploader p[style*="color"],
+    .stFileUploader label[style*="color"] {
+        color: #2d3748 !important;
+    }
+    
+    /* Additional aggressive fix for number input - override any inline styles */
+    .stNumberInput [style*="color"],
+    .stNumberInput div[style*="color"],
+    .stNumberInput span[style*="color"],
+    .stNumberInput input[style*="color"],
+    .stNumberInput button[style*="color"] {
+        color: #2d3748 !important;
+        background: #ffffff !important;
+    }
+    
+    .stNumberInput input[style*="background"],
+    .stNumberInput div[style*="background"] {
+        background: #ffffff !important;
+    }
+   /* ===========================================
+   FINAL STREAMLIT FILE UPLOADER FIX
+   =========================================== */
+
+/* 1️⃣ Remove OUTER dotted border completely */
+div[data-testid="stFileUploader"] > section {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+/* 2️⃣ Remove dark/black background wrapper */
+div[data-testid="stFileUploader"] > div {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* 3️⃣ Style ONLY the real dropzone box */
+div[data-testid="stFileUploader"] section div[data-baseweb="block"] {
+    background-color: #f8fafc !important;
+    border: 2px dashed #cbd5e0 !important;
+    border-radius: 10px !important;
+    padding: 1.5rem !important;
+}
+
+/* 4️⃣ Remove the HUGE BLUE SQUARE ICON WRAPPER */
+div[data-testid="stFileUploader"] section div[data-baseweb="block"] div:first-child {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 12px 0 0 !important;
+    width: auto !important;
+}
+
+/* 5️⃣ FIX the cloud SVG icon — correct size & color */
+div[data-testid="stFileUploader"] svg {
+    width: 26px !important;
+    height: 26px !important;
+}
+
+div[data-testid="stFileUploader"] svg path {
+    fill: #4c6ef5 !important;
+    stroke: #4c6ef5 !important;
+}
+
+/* 6️⃣ Fix dropzone text */
+div[data-testid="stFileUploader"] section div[data-baseweb="block"] * {
+    color: #2d3748 !important;
+    font-size: 15px !important;
+}
+
+/* 7️⃣ Make Browse Files button clean */
+div[data-testid="stFileUploader"] button {
+    background: #ffffff !important;
+    color: #2d3748 !important;
+    border: 1px solid #cbd5e0 !important;
+    border-radius: 8px !important;
+    padding: 6px 14px !important;
+}
+
+div[data-testid="stFileUploader"] button:hover {
+    background: #e6f2ff !important;
+}
+

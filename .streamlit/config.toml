@@ -1,0 +1,27 @@
+# Streamlit runtime configuration.
+#
+# Applies to local runs, Docker, and Streamlit Community Cloud alike.
+
+[server]
+# Cap uploads at the server level too. The app also checks this in Python, but
+# this stops an oversized body before it is buffered.
+maxUploadSize = 50
+# XSRF protection requires CORS to stay enabled; setting enableCORS = false here
+# is silently overridden by Streamlit and only produces a startup warning.
+enableXsrfProtection = true
+headless = true
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+# Matches assets/styles.css so Streamlit's own chrome does not clash with it.
+base = "light"
+primaryColor = "#4c6ef5"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f7fafc"
+textColor = "#2d3748"
+
+[client]
+# Show a short message instead of a Python traceback when something fails.
+showErrorDetails = false
