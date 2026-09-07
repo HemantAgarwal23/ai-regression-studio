@@ -1,0 +1,22 @@
+[tool.pytest.ini_options]
+# rootdir is the repo root, so `pytest` works from anywhere without a
+# PYTHONPATH dance to make `utils` importable.
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+exclude = ["venv", ".venv", "assets"]
+
+[tool.ruff.lint]
+# E/F: pycodestyle + pyflakes, I: import order, B: common bugs,
+# UP: modern syntax, C4: comprehensions.
+select = ["E", "F", "I", "B", "UP", "C4"]
+ignore = [
+    "E501",  # line length is enforced by the formatter, not the linter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]

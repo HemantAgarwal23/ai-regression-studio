@@ -1,0 +1,17 @@
+# Normalize line endings so a Windows checkout does not show every file as
+# modified. Text files are stored LF in the repository and checked out with the
+# platform's native endings.
+* text=auto
+
+*.py    text diff=python
+*.md    text
+*.css   text
+*.toml  text
+*.yml   text
+*.cfg   text
+Dockerfile text
+
+*.png   binary
+*.joblib binary
+*.pdf   binary
+*.docx  binary
