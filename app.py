@@ -29,7 +29,7 @@ from utils.explainability import (
 )
 from utils.model_training import export_model_bundle, get_model_config, train_model
 from utils.sample_data import generate_sample_dataset
-from utils.ui_helpers import safe_number_input_bounds
+from utils.ui_helpers import safe_number_input_bounds, suggest_target_column
 from utils.visualization import (
     create_correlation_heatmap,
     create_prediction_scatter,
@@ -339,18 +339,13 @@ with tab2:
             numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
             
             if numeric_cols:
-                # Smart target suggestion based on column names
-                suggested_targets = []
-                common_target_keywords = ['price', 'cost', 'value', 'amount', 'target', 'y', 'label', 'outcome']
-                
-                for col in numeric_cols:
-                    if any(keyword in col.lower() for keyword in common_target_keywords):
-                        suggested_targets.append(col)
-                
+                # Smart target suggestion based on column names.
+                suggested = suggest_target_column(numeric_cols)
+
                 target_col = st.selectbox(
                     "Target Variable",
                     numeric_cols,
-                    index=0 if not suggested_targets else numeric_cols.index(suggested_targets[0]),
+                    index=numeric_cols.index(suggested) if suggested else 0,
                     help="Select the variable you want to predict"
                 )
                 
