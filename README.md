@@ -1,5 +1,6 @@
 # AI Regression Studio
 
+[![Live demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ai-regression-studio-j6gjhxrp6qdlufma94znpg.streamlit.app)
 [![CI](https://github.com/HemantAgarwal23/ai-regression-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/HemantAgarwal23/ai-regression-studio/actions/workflows/ci.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
@@ -8,11 +9,15 @@
 > A Streamlit application that takes a tabular dataset from upload to a trained,
 > comparable, exportable regression model — without writing any code.
 
+**▶ Try it: https://ai-regression-studio-j6gjhxrp6qdlufma94znpg.streamlit.app**
+
 Upload a CSV or Excel file (or load the bundled demo dataset), pick a target
 column, and the app preprocesses the data, trains up to eight scikit-learn
 regressors, ranks them on held-out data, and lets you make live predictions with
 the winner. Trained models export as a self-contained bundle you can load
 elsewhere.
+
+![Results dashboard](assets/screenshots/06-results-dashboard.png)
 
 ---
 
@@ -80,7 +85,8 @@ streamlit run app.py
 ```
 
 Open `http://localhost:8501`, click **Load demo dataset** on the first tab, and
-work left to right through the tabs.
+work left to right through the tabs. The same thing is running at
+<https://ai-regression-studio-j6gjhxrp6qdlufma94znpg.streamlit.app>.
 
 ### Docker
 
@@ -91,6 +97,31 @@ docker run -p 8501:8501 ai-regression-studio
 
 The image is a two-stage build — compilers stay in the builder stage — and the
 container runs as an unprivileged user.
+
+## Screenshots
+
+Captured from the running app by `tools/capture_screenshots.py`.
+
+**Load data** — upload a file, or start from the bundled synthetic dataset.
+
+![Data upload](assets/screenshots/02-demo-loaded.png)
+
+**Explore** — pick a target and features, with distributions and correlations.
+
+![Data explorer](assets/screenshots/03-data-explorer.png)
+
+**Train** — every preprocessing step is reported before the models run.
+
+![Preprocessing steps](assets/screenshots/04-preprocessing-steps.png)
+
+**Compare** — leaderboard, residuals, and actual-vs-predicted for the winner.
+
+![SHAP global importance](assets/screenshots/07-shap-global-importance.png)
+
+**Explain a single prediction** — where the model started, what each feature
+contributed, and where it landed.
+
+![SHAP waterfall](assets/screenshots/09-shap-waterfall.png)
 
 ## Project layout
 
@@ -113,6 +144,8 @@ ai-regression-studio/
 │   ├── test_models.py
 │   ├── test_sample_data.py     # End-to-end guard on the demo
 │   └── test_visualization.py
+├── tools/
+│   └── capture_screenshots.py  # Drives the app headlessly for README shots
 ├── .streamlit/config.toml      # Upload cap, XSRF, theme
 ├── .github/workflows/ci.yml    # Tests on 3.10-3.13, lint, Docker health check
 ├── Dockerfile

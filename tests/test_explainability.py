@@ -139,17 +139,41 @@ def test_summarize_global_importance_rejects_wrong_name_count(regression_data):
 # --- plot builders ----------------------------------------------------------
 
 
-def test_create_shap_waterfall_totals_to_the_prediction():
-    """The waterfall's total step equals base value plus all contributions."""
+def test_create_shap_waterfall_marks_baseline_and_prediction():
+    """
+    The walk starts at the base value and ends at the prediction.
+
+    Both are drawn as reference lines rather than as a plotly 'total' bar: that
+    measure ignores the value it is handed and renders full-width from the axis
+    origin, which on a zoomed axis showed a grossly wrong prediction.
+    """
     shap_values = np.array([10.0, -4.0, 2.0])
     base = 100.0
+    expected = base + shap_values.sum()
 
     fig = create_shap_waterfall(['a', 'b', 'c'], shap_values, base)
 
     assert isinstance(fig, go.Figure)
     trace = fig.data[0]
-    assert trace.measure[-1] == 'total'
-    assert trace.x[-1] == pytest.approx(base + shap_values.sum())
+
+    # Every drawn bar is a relative step; no 'total' bar is emitted.
+    assert set(trace.measure) == {'relative'}
+    assert trace.base == pytest.approx(base)
+    assert sum(trace.x) == pytest.approx(shap_values.sum())
+
+    line_positions = sorted(shape['x0'] for shape in fig.layout.shapes)
+    assert line_positions == pytest.approx(sorted([base, expected]))
+
+
+def test_create_shap_waterfall_contributions_reach_the_prediction():
+    """Base plus every drawn contribution reconstructs the prediction."""
+    shap_values = np.array([5.0, -12.0, 3.5, 0.5])
+    base = 250.0
+
+    fig = create_shap_waterfall(['a', 'b', 'c', 'd'], shap_values, base)
+    trace = fig.data[0]
+
+    assert trace.base + sum(trace.x) == pytest.approx(base + shap_values.sum())
 
 
 def test_create_shap_waterfall_pools_features_beyond_the_cap():
@@ -161,8 +185,8 @@ def test_create_shap_waterfall_pools_features_beyond_the_cap():
 
     labels = list(fig.data[0].y)
     assert "10 other features" in labels
-    # 5 individual features + the pooled row + the total
-    assert len(labels) == 7
+    # 5 individual features + the pooled row (the prediction is a reference line)
+    assert len(labels) == 6
 
 
 def test_create_shap_waterfall_labels_include_feature_values():
