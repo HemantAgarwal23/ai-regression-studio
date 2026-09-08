@@ -33,7 +33,21 @@ TARGET_COLUMN = "price"
 
 
 def settle(page, ms=SETTLE_MS):
-    """Let Streamlit finish its current rerun before touching the DOM again."""
+    """
+    Wait for Streamlit to finish its current rerun.
+
+    A fixed sleep is not enough: SHAP in particular can run for many seconds,
+    and screenshotting mid-rerun captures a greyed-out page with a Stop button.
+    Streamlit marks the running state on the app container, so wait for that to
+    clear before falling back to a short settle for animations.
+    """
+    try:
+        page.wait_for_function(
+            "() => !document.querySelector('[data-testid=\'stStatusWidget\']')",
+            timeout=TRAIN_TIMEOUT_MS,
+        )
+    except Exception:
+        pass
     page.wait_for_timeout(ms)
 
 
@@ -128,8 +142,21 @@ def main(url):
         settle(page, 3_000)
 
         page.get_by_role("button", name="Make Prediction").click()
-        settle(page, 8_000)
+        page.wait_for_selector("text=Prediction Results", timeout=TRAIN_TIMEOUT_MS)
+        settle(page, 3_000)
         shot(page, "08-prediction-lab")
+
+        # The per-prediction SHAP waterfall is the headline explainability view,
+        # so capture it once it has finished computing.
+        try:
+            page.wait_for_selector("text=Why this prediction?", timeout=TRAIN_TIMEOUT_MS)
+            page.wait_for_selector("text=Feature contributions", timeout=TRAIN_TIMEOUT_MS)
+            settle(page, 4_000)
+            page.get_by_text("Why this prediction?").scroll_into_view_if_needed()
+            page.wait_for_timeout(1_500)
+            shot(page, "09-shap-waterfall")
+        except Exception as exc:
+            print(f"  skipped SHAP waterfall: {exc}")
 
         context.close()
         browser.close()

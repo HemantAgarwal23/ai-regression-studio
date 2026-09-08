@@ -218,28 +218,50 @@ def create_shap_waterfall(feature_names, shap_values, base_value, feature_values
 
     prediction = float(base_value + contributions.sum())
 
+    # Only relative steps are drawn. A plotly 'total' measure ignores the value
+    # it is given and always renders as a full-width bar from the axis origin,
+    # which on a zoomed axis reads as a wildly wrong prediction. The start and
+    # end points are shown as reference lines instead, which keeps the axis
+    # tight around the contributions and still shows where the walk lands.
     fig = go.Figure(go.Waterfall(
         orientation='h',
-        measure=['relative'] * len(steps) + ['total'],
-        y=[name for name, _ in steps] + ['Prediction'],
-        x=[value for _, value in steps] + [prediction],
+        measure=['relative'] * len(steps),
+        y=[name for name, _ in steps],
+        x=[value for _, value in steps],
         base=base_value,
-        text=[f"{value:+,.2f}" for _, value in steps] + [f"{prediction:,.2f}"],
-        textposition='outside',
+        text=[f"{value:+,.2f}" for _, value in steps],
+        # 'outside' pushes labels on left-extending bars into the y-axis tick
+        # text; 'auto' moves them inside the bar when there is no room.
+        textposition='auto',
         connector={'line': {'color': '#a0aec0'}},
         increasing={'marker': {'color': '#e53e3e'}},
         decreasing={'marker': {'color': '#3182ce'}},
-        totals={'marker': {'color': '#4c6ef5'}},
     ))
+
+    fig.add_vline(
+        x=base_value,
+        line_dash='dot',
+        line_color='#718096',
+        annotation_text=f"baseline {base_value:,.0f}",
+        annotation_position='top left',
+    )
+    fig.add_vline(
+        x=prediction,
+        line_dash='dash',
+        line_color='#4c6ef5',
+        annotation_text=f"prediction {prediction:,.0f}",
+        annotation_position='top right',
+    )
 
     fig.update_layout(
         title=title,
         template=PLOT_TEMPLATE,
-        xaxis_title=f"Contribution (baseline = {base_value:,.2f})",
+        xaxis_title=f"Predicted {'increase' if prediction >= base_value else 'decrease'} "
+                    f"from baseline: {prediction - base_value:+,.2f}",
         # Largest contributor at the top reads more naturally than at the bottom.
         yaxis={'title': 'Feature', 'autorange': 'reversed'},
         showlegend=False,
-        margin={'l': 10, 'r': 10},
+        margin={'l': 10, 'r': 10, 't': 70},
     )
 
     return fig
