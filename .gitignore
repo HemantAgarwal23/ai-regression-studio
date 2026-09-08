@@ -52,7 +52,9 @@ env.bak/
 venv.bak/
 
 # Streamlit
-.streamlit/
+# .streamlit/config.toml is committed on purpose - it is app configuration,
+# not a local preference. Only secrets stay out of the repo.
+.streamlit/secrets.toml
 
 # Jupyter Notebook
 .ipynb_checkpoints
