@@ -27,7 +27,7 @@ from .model_training import (
     train_model,
 )
 from .sample_data import generate_sample_dataset
-from .ui_helpers import safe_number_input_bounds
+from .ui_helpers import safe_number_input_bounds, suggest_target_column, tokenize_column_name
 from .visualization import (
     create_correlation_heatmap,
     create_prediction_scatter,
@@ -59,6 +59,8 @@ __all__ = [
     'generate_sample_dataset',
     # ui_helpers
     'safe_number_input_bounds',
+    'suggest_target_column',
+    'tokenize_column_name',
     # visualization
     'create_correlation_heatmap',
     'create_prediction_scatter',

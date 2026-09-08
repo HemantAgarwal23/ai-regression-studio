@@ -12,7 +12,12 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from utils.ui_helpers import safe_number_input_bounds
+from utils.sample_data import generate_sample_dataset
+from utils.ui_helpers import (
+    safe_number_input_bounds,
+    suggest_target_column,
+    tokenize_column_name,
+)
 
 AppTest = pytest.importorskip(
     "streamlit.testing.v1", reason="Streamlit testing harness unavailable"
@@ -123,3 +128,43 @@ def test_safe_number_input_bounds_always_yields_a_usable_range(series):
     assert low <= default <= high
     assert step > 0
     assert all(np.isfinite(v) for v in (low, high, default, step))
+
+
+# --- target column suggestion -----------------------------------------------
+
+
+@pytest.mark.parametrize("columns,expected", [
+    # The bug this guards: 'y' is a keyword, and substring matching let it match
+    # the 'y' inside "age_years", so the demo dataset trained against age
+    # instead of price and scored R2 = 0.21 on the deployed app.
+    (['area_sqft', 'bedrooms', 'age_years', 'lot_noise', 'price'], 'price'),
+    (['age_years', 'garage_spaces'], None),
+    # A column genuinely named 'y' should still win.
+    (['age_years', 'y'], 'y'),
+    # camelCase and separators both tokenize.
+    (['LotArea', 'YearBuilt', 'SalePrice'], 'SalePrice'),
+    (['sale-price', 'sqft'], 'sale-price'),
+    (['total_cost', 'units'], 'total_cost'),
+    # Earlier keywords win: 'price' outranks 'score'.
+    (['score', 'price'], 'price'),
+    ([], None),
+])
+def test_suggest_target_column(columns, expected):
+    """Keywords match whole name tokens, never substrings."""
+    assert suggest_target_column(columns) == expected
+
+
+def test_tokenize_column_name_splits_separators_and_camel_case():
+    """Underscores, hyphens, dots, spaces and camelCase all split."""
+    assert tokenize_column_name("sale_price") == ['sale', 'price']
+    assert tokenize_column_name("SalePrice") == ['sale', 'price']
+    assert tokenize_column_name("distance-to.city km") == ['distance', 'to', 'city', 'km']
+    assert tokenize_column_name("age_years") == ['age', 'years']
+
+
+def test_demo_dataset_target_is_suggested_correctly():
+    """The bundled demo must land on 'price', not a lookalike column."""
+    df = generate_sample_dataset(n_samples=20)
+    numeric = df.select_dtypes(include=['number']).columns.tolist()
+
+    assert suggest_target_column(numeric) == 'price'
